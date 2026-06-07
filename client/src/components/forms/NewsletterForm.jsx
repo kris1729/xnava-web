@@ -45,7 +45,14 @@ export const NewsletterForm = () => {
         className="flex-1 rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-xnava-400 focus:ring-2 focus:ring-xnava-400 focus:outline-none transition-colors"
       />
       <Button type="submit" variant="primary" disabled={isLoading}>
-        {isLoading ? 'Subscribing...' : 'Subscribe'}
+        {isLoading ? (
+          <div className="flex flex-col items-center gap-0.5">
+            <span>Subscribing...</span>
+            <span className="text-[10px] text-gray-400 font-normal">Waking server...</span>
+          </div>
+        ) : (
+          'Subscribe'
+        )}
       </Button>
       {error && <p className="text-red-400 text-sm mt-1">{error}</p>}
     </form>

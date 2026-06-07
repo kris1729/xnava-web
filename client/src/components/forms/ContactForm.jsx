@@ -34,7 +34,7 @@ export const ContactForm = () => {
           </svg>
         </div>
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
-        <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
+        <p className="text-gray-600 mb-6">We&apos;ll get back to you within 24 hours.</p>
         <Button
           variant="outline"
           onClick={() => {
@@ -109,7 +109,7 @@ export const ContactForm = () => {
           value={formData.subject}
           onChange={handleChange}
           required
-          placeholder="What's this about?"
+          placeholder="What&apos;s this about?"
           className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-xnava-500 focus:ring-2 focus:ring-xnava-500 focus:outline-none transition-colors"
         />
       </div>
@@ -138,13 +138,18 @@ export const ContactForm = () => {
 
       <Button type="submit" variant="primary" size="lg" fullWidth disabled={isLoading}>
         {isLoading ? (
-          <>
-            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
-            Sending...
-          </>
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center gap-2">
+              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              <span>Sending...</span>
+            </div>
+            <span className="text-xs text-gray-400 font-normal">
+              First request may take 30-60s — waking server
+            </span>
+          </div>
         ) : (
           'Send Message'
         )}
