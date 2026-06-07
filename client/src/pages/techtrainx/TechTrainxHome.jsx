@@ -1,6 +1,5 @@
 import { ROUTES } from '@/constants/routes';
 import { COMPANY } from '@/constants/company';
-import { META } from '@/constants/meta';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Logo } from '@/components/ui/Logo';
@@ -11,47 +10,84 @@ import { motion } from 'framer-motion';
 
 const HIGHLIGHTS = [
   {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    title: 'DSA Mastery',
-    description: '400+ handpicked problems covering arrays to dynamic programming.',
+    icon: '🏫',
+    title: 'Offline + Online',
+    description: `Offline classroom near Amity University, Lucknow. Online live sessions — study from anywhere in India.`,
   },
   {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: 'Full Stack Project',
-    description: 'Build a production-grade MERN app with deployment and CI/CD.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
-    title: 'AI/ML Project',
-    description: 'Train and deploy a machine learning model with a real-world dataset.',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
+    icon: '👨‍🏫',
     title: 'MNC Mentors',
-    description: 'Learn directly from engineers working at top product companies.',
+    description: `Direct mentorship from engineers at ${COMPANY.UNITS.TECHTRAINX.MENTORS_LIST.slice(0, 3).join(', ')} & more.`,
+  },
+  {
+    icon: '📚',
+    title: `${COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS}+ Problems`,
+    description: 'Placement-oriented DSA in Java & C++. Pattern-based approach for every topic.',
+  },
+  {
+    icon: '🏗️',
+    title: '2 Live Projects',
+    description: 'Full Stack + AI/ML. Deployed and on GitHub. Ready to show in interviews.',
+  },
+];
+
+const PROGRAMS = [
+  {
+    badge: '🏫 OFFLINE',
+    color: 'techtrainx',
+    title: 'Offline Classroom Program',
+    price: COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.FULL_COURSE,
+    monthly: COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.MONTHLY,
+    mode: COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.MODE,
+    features: [
+      'Daily 2-hour offline classes',
+      'Face-to-face mentorship',
+      'Small batch of 30 students',
+      'Same certificates as online',
+      '7-day free demo',
+    ],
+    cta: 'Register for Offline',
+  },
+  {
+    badge: '🌐 ONLINE',
+    color: 'techtrainx',
+    title: 'Online Live Program',
+    price: COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.FULL_COURSE,
+    monthly: COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.MONTHLY,
+    mode: COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.MODE,
+    features: [
+      'Daily 2-hour live online classes',
+      'Same curriculum as offline',
+      'Study from anywhere in India',
+      'Same 2 certificates',
+      '7-day free demo',
+    ],
+    cta: 'Register for Online',
+  },
+  {
+    badge: '⚡ DSA BOOTCAMP',
+    color: 'techtrainx',
+    title: '45-Day DSA Bootcamp',
+    price: COMPANY.UNITS.TECHTRAINX.PRICING.DSA_BOOTCAMP.FULL_COURSE,
+    monthly: 'One-time payment',
+    mode: COMPANY.UNITS.TECHTRAINX.PRICING.DSA_BOOTCAMP.MODE,
+    features: [
+      `${COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS}+ DSA problems`,
+      'Java & C++ language tracks',
+      '3 mock interviews included',
+      '1 DSA Completion Certificate',
+      '7-day free demo',
+    ],
+    cta: 'Register for DSA Bootcamp',
+    highlight: true,
   },
 ];
 
 const METRICS = [
-  { value: COMPANY.UNITS.TECHTRAINX.SEATS, label: 'Seats' },
-  { value: COMPANY.UNITS.TECHTRAINX.DURATION_MONTHS, label: 'Months' },
-  { value: 'Free', label: 'Demo Week' },
+  { value: COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS, suffix: '+', label: 'DSA Problems' },
+  { value: COMPANY.UNITS.TECHTRAINX.MODULES_COUNT, suffix: '+', label: 'Core Modules' },
+  { value: COMPANY.UNITS.TECHTRAINX.PROJECTS_COUNT, suffix: '', label: 'Live Projects' },
+  { value: COMPANY.UNITS.TECHTRAINX.CERTIFICATES_COUNT, suffix: '', label: 'Certificates' },
 ];
 
 const TechTrainxHome = () => {
@@ -61,7 +97,6 @@ const TechTrainxHome = () => {
       <section className="min-h-[85vh] flex items-center bg-gradient-to-br from-techtrainx-900 via-techtrainx-900 to-xnava-900">
         <div className="container-custom py-20 lg:py-0">
           <div className="max-w-4xl mx-auto text-center">
-            {/* ── TechTrainx Logo ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -77,7 +112,7 @@ const TechTrainxHome = () => {
               transition={{ delay: 0.1, duration: 0.5 }}
             >
               <Badge color="techtrainx" className="mb-6 text-sm px-4 py-1.5">
-                Placement Bootcamp
+                Placement Bootcamp — Offline & Online
               </Badge>
             </motion.div>
 
@@ -103,27 +138,19 @@ const TechTrainxHome = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="text-lg text-techtrainx-200 mb-8 max-w-xl mx-auto"
+              className="text-lg text-techtrainx-200 mb-3 max-w-xl mx-auto"
             >
-              {COMPANY.UNITS.TECHTRAINX.DURATION_MONTHS} months. {COMPANY.UNITS.TECHTRAINX.SEATS} seats. Real projects. Real placements.
+              {COMPANY.UNITS.TECHTRAINX.DURATION_MONTHS} months. {COMPANY.UNITS.TECHTRAINX.SEATS} seats. {COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS}+ DSA problems. 2 projects. 2 certificates.
             </motion.p>
 
-            {/* Metric Row */}
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="flex items-center justify-center gap-6 sm:gap-10 mb-10"
+              className="text-techtrainx-300 text-sm mb-8"
             >
-              {METRICS.map((metric) => (
-                <div key={metric.label} className="text-center">
-                  <span className="block text-2xl sm:text-3xl font-bold text-white">
-                    {metric.value}
-                  </span>
-                  <span className="text-sm text-techtrainx-300">{metric.label}</span>
-                </div>
-              ))}
-            </motion.div>
+              Mentors from {COMPANY.UNITS.TECHTRAINX.MENTORS_LIST.join(', ')}
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -131,17 +158,33 @@ const TechTrainxHome = () => {
               transition={{ delay: 0.5, duration: 0.5 }}
               className="flex flex-wrap gap-4 justify-center"
             >
-              <Button to={ROUTES.CONTACT} variant="techtrainx" size="lg">
-                Register Interest
+              <Button to={ROUTES.TECHTRAINX_BOOTCAMP} variant="techtrainx" size="lg">
+                View Programs & Pricing
               </Button>
               <Button
-                to={ROUTES.TECHTRAINX_BOOTCAMP}
+                to={ROUTES.CONTACT}
                 size="lg"
                 className="border-2 border-techtrainx-300 text-techtrainx-300 hover:bg-techtrainx-300 hover:text-techtrainx-900"
               >
-                View Curriculum
+                {COMPANY.UNITS.TECHTRAINX.DEMO_WEEK} — Join Free
               </Button>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ METRICS ═══════════ */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {METRICS.map((metric, i) => (
+              <div key={metric.label} className="text-center lg:border-r border-gray-200 last:border-r-0">
+                <span className="block text-3xl sm:text-4xl font-bold text-techtrainx-600">
+                  {metric.value}{metric.suffix}
+                </span>
+                <span className="text-sm text-gray-500">{metric.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -151,16 +194,14 @@ const TechTrainxHome = () => {
         <div className="container-custom">
           <SectionHeading
             title="What Makes This Different"
-            description="Not a generic online course. An intensive, offline program designed to get you hired."
+            description="Not a generic online course. An intensive program — offline or online — designed to get you hired."
             align="center"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HIGHLIGHTS.map((item, index) => (
               <ScrollReveal key={item.title} variant="fadeIn" delay={index * 0.1}>
                 <Card hover padding="lg" className="text-center border-techtrainx-100 h-full">
-                  <div className="w-12 h-12 bg-techtrainx-100 rounded-xl flex items-center justify-center mx-auto mb-4 text-techtrainx-600">
-                    {item.icon}
-                  </div>
+                  <span className="text-4xl block mb-4">{item.icon}</span>
                   <CardTitle>{item.title}</CardTitle>
                   <CardDescription>{item.description}</CardDescription>
                 </Card>
@@ -170,36 +211,59 @@ const TechTrainxHome = () => {
         </div>
       </section>
 
-      {/* ═══════════ CURRICULUM ═══════════ */}
+      {/* ═══════════ 3 PROGRAMS ═══════════ */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <SectionHeading
-            badge="Curriculum"
+            badge="Programs & Pricing"
             badgeColor="techtrainx"
-            title="What You Will Learn"
-            description="Everything you need to crack product company interviews."
+            title="Choose Your Path"
+            description={`All programs include ${COMPANY.UNITS.TECHTRAINX.DEMO_DAYS}-day free demo. No payment until you experience the training.`}
             align="center"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {COMPANY.UNITS.TECHTRAINX.CURRICULUM.map((item, index) => (
-              <ScrollReveal key={item} variant="slideUp" delay={index * 0.1}>
-                <Card hover padding="lg" className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-techtrainx-100 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-techtrainx-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {PROGRAMS.map((program, index) => (
+              <ScrollReveal key={program.title} variant="slideUp" delay={index * 0.1}>
+                <Card
+                  hover
+                  padding="lg"
+                  className={`h-full flex flex-col border-t-4 ${
+                    program.highlight
+                      ? 'border-t-techtrainx-500 ring-2 ring-techtrainx-200'
+                      : 'border-t-techtrainx-300'
+                  }`}
+                >
+                  <Badge color={program.color} className="mb-3 self-start">
+                    {program.badge}
+                  </Badge>
+                  <CardTitle className="text-xl">{program.title}</CardTitle>
+                  <div className="my-4">
+                    <span className="text-4xl font-heading font-bold text-techtrainx-600">
+                      {program.price}
+                    </span>
+                    {program.monthly !== 'One-time payment' && (
+                      <span className="text-sm text-gray-500 ml-2">
+                        or {program.monthly}/mo
+                      </span>
+                    )}
                   </div>
-                  <div>
-                    <CardTitle className="text-lg">{item}</CardTitle>
-                  </div>
+                  <p className="text-xs text-gray-500 mb-4">{program.mode}</p>
+                  <ul className="space-y-2 mb-6 flex-1">
+                    {program.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm text-gray-600">
+                        <svg className="w-4 h-4 text-techtrainx-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button to={ROUTES.CONTACT} variant={program.highlight ? 'techtrainx' : 'outline'} fullWidth>
+                    {program.cta}
+                  </Button>
                 </Card>
               </ScrollReveal>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <Button to={ROUTES.TECHTRAINX_BOOTCAMP} variant="outline" size="lg">
-              See Full 12-Week Roadmap →
-            </Button>
           </div>
         </div>
       </section>
@@ -217,12 +281,11 @@ const TechTrainxHome = () => {
               {COMPANY.UNITS.TECHTRAINX.MENTORS}
             </h2>
             <p className="text-techtrainx-200 text-lg mb-8 leading-relaxed">
-              Not fresh graduates repeating theory. Seasoned engineers who have
-              shipped products used by millions — now training the next wave of talent
-              in Lucknow.
+              Learn directly from engineers at {COMPANY.UNITS.TECHTRAINX.MENTORS_LIST.join(', ')}. 
+              Real professionals. Real experience. Real mentorship.
             </p>
             <Button to={ROUTES.CONTACT} variant="techtrainx" size="lg">
-              Register for Free Demo Week
+              Start Your {COMPANY.UNITS.TECHTRAINX.DEMO_DAYS}-Day Free Demo
             </Button>
           </ScrollReveal>
         </div>

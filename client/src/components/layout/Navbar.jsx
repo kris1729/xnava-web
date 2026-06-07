@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ROUTES } from '@/constants/routes';
 import { Button } from '@/components/ui/Button';
-import { Logo } from '@/components/ui/Logo';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { cn } from '@/utils/cn';
 
@@ -56,7 +55,16 @@ export const Navbar = () => {
     >
       <nav className="container-custom flex items-center justify-between h-16 lg:h-20">
         {/* ── Logo ── */}
-        <Logo variant="dark" size="md" linkTo={ROUTES.HOME} />
+        <Link
+          to={ROUTES.HOME}
+          className="flex items-center shrink-0 group"
+          aria-label="Xnava Enterprises Home"
+        >
+          <span className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-900 tracking-tight">
+            Xnava
+            <span className="text-xnava-500 group-hover:text-xnava-600 transition-colors">.</span>
+          </span>
+        </Link>
 
         {/* ── Desktop Links ── */}
         <div className="hidden lg:flex items-center gap-8">

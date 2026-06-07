@@ -1,46 +1,51 @@
 import { useState } from 'react';
 import { ROUTES } from '@/constants/routes';
 import { COMPANY } from '@/constants/company';
-import { META } from '@/constants/meta';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardTitle, CardDescription } from '@/components/ui/Card';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
-const SNAPSHOT = [
-  { icon: '⏱️', label: 'Duration', value: `${COMPANY.UNITS.TECHTRAINX.DURATION_MONTHS} Months` },
-  { icon: '👥', label: 'Batch Size', value: `${COMPANY.UNITS.TECHTRAINX.SEATS} Students` },
-  { icon: '📍', label: 'Mode', value: 'Offline' },
-  { icon: '🎁', label: 'Try First', value: 'Free Demo Week' },
-];
-
 const ROADMAP = [
-  { week: 'Week 1', label: 'Free Demo', topics: 'Experience the teaching style. Meet mentors. Solve real problems. Zero commitment.', highlight: true },
-  { week: 'Weeks 2–5', label: 'DSA Intensive', topics: 'Arrays, Strings, Linked Lists, Trees, Graphs, DP, Greedy. 400+ problems. Company-specific patterns.' },
-  { week: 'Weeks 6–8', label: 'Core CS', topics: 'Operating Systems, DBMS, Computer Networks, System Design basics. Theory made practical.' },
-  { week: 'Weeks 9–10', label: 'Full Stack Project', topics: 'MERN stack. Authentication, payments, deployment. GitHub portfolio ready.' },
-  { week: 'Weeks 11–12', label: 'AI/ML + Interviews', topics: 'ML model training. Mock interviews. Resume review. Salary negotiation prep.' },
-];
-
-const FEATURES = [
-  { title: 'Only 30 Students', description: 'Small batch ensures personal attention. No student gets left behind.' },
-  { title: 'Real Projects', description: 'Two production-grade projects go straight to your portfolio and GitHub.' },
-  { title: 'MNC Mentors', description: 'Learn from engineers who have shipped products at scale.' },
-  { title: 'Free First Week', description: 'Attend the full first week before paying anything. No risk.' },
-  { title: '400+ DSA Problems', description: 'Curated problem set covering every pattern asked in interviews.' },
-  { title: 'Mock Interviews', description: 'Face realistic technical and HR interviews with detailed feedback.' },
+  { week: 'Weeks 1–2', days: 'Days 1–15', title: 'Core Data Structures', topics: 'Arrays, Strings, Linked Lists, Stack, Queue, Hashing, Recursion basics — 100+ problems' },
+  { week: 'Weeks 3–4', days: 'Days 16–30', title: 'Advanced DSA', topics: 'Trees, BST, Heaps, Graphs, Sliding Window, Two Pointers, Greedy, Backtracking — 150+ problems' },
+  { week: 'Weeks 5–7', days: 'Days 31–45', title: 'Interview Mastery', topics: 'Dynamic Programming, Sorting, Time Complexity analysis, 3 Mock Interviews, remaining 150+ problems' },
 ];
 
 const FAQS = [
-  { q: 'Is this for freshers or experienced students?', a: 'Designed for pre-final and final year B.Tech, M.Tech, BCA, MCA, and Diploma CS students. If you know basic programming in any one language, you are ready.' },
-  { q: 'What if I miss a class?', a: 'All sessions are recorded and shared. You also get access to the learning portal with notes, assignments, and discussion forums.' },
-  { q: 'Is there a placement guarantee?', a: 'We guarantee placement preparation — not placement. We give you every tool, skill, and mock interview needed. Results depend on your effort. Our students consistently crack 6+ LPA packages.' },
-  { q: 'What projects will I build?', a: 'Every student builds one Full Stack MERN application and one AI/ML model. These are real, deployable projects — not tutorial clones.' },
-  { q: 'How is this different from online courses?', a: 'Offline, in-person mentorship. Live doubt resolution. Peer learning with 29 other serious students. Accountability that online courses cannot provide.' },
-  { q: 'What do I need to know before joining?', a: 'Basic understanding of any one programming language — C++, Java, or Python. We teach everything else from fundamentals to advanced.' },
-  { q: 'Is the free demo week really free?', a: 'Absolutely. Zero payment. Attend the full first week, meet mentors, solve problems. Only continue if you find value.' },
-  { q: 'How do I register?', a: 'Use the contact form or visit our center near Amity University, Lucknow. Batch sizes are limited — registrations close once 30 seats fill.' },
+  {
+    q: 'What is the difference between Offline and Online programs?',
+    a: 'Same curriculum, same certificates, same mentors. Offline is classroom-based near Amity University, Lucknow. Online is live sessions — study from anywhere in India. Offline includes face-to-face interaction; online gives you location flexibility.',
+  },
+  {
+    q: 'Can I switch from online to offline mid-program?',
+    a: 'Yes. If seats are available in the offline batch, you can switch. You only pay the difference in fees.',
+  },
+  {
+    q: 'Is the 7-day demo really free?',
+    a: 'Absolutely. Attend 7 full days of classes — offline or online — before paying anything. If you do not find value, you walk away with zero cost.',
+  },
+  {
+    q: 'What projects will I build?',
+    a: 'Two production-grade projects — one Full Stack MERN application and one AI/ML model. Both are deployed live and added to your GitHub portfolio.',
+  },
+  {
+    q: 'What certificates do I get?',
+    a: 'Two certificates: 1) Internship Experience Certificate at Day 45 after your first project, 2) Full Program Completion Certificate at the end listing every skill and module.',
+  },
+  {
+    q: 'Who are the mentors?',
+    a: `Working professionals from ${COMPANY.UNITS.TECHTRAINX.MENTORS_LIST.join(', ')}. Not fresh graduates — real engineers who ship products used by millions.`,
+  },
+  {
+    q: 'Is the 45-Day DSA Bootcamp included in the full program?',
+    a: 'The full 3-month program already includes DSA as a module. The separate 45-Day DSA Bootcamp is for students who only want DSA training — focused, fast, and affordable at ₹1,500.',
+  },
+  {
+    q: 'How do I register?',
+    a: `Call or WhatsApp ${COMPANY.UNITS.TECHTRAINX.PHONE}. Or visit our center near Amity University, Lucknow. Seats are limited to ${COMPANY.UNITS.TECHTRAINX.SEATS} per batch.`,
+  },
 ];
 
 const Bootcamp = () => {
@@ -50,58 +55,123 @@ const Bootcamp = () => {
       <section className="section-padding bg-gradient-to-br from-techtrainx-50 to-white">
         <div className="container-custom">
           <SectionHeading
-            badge="Bootcamp"
+            badge="Programs & Pricing"
             badgeColor="techtrainx"
-            title={META.TECHTRAINX_BOOTCAMP.TITLE}
-            description="The complete 12-week journey from basics to job-ready. Limited to 30 students per batch for personalized mentorship."
+            title="Complete Bootcamp Details"
+            description={`${COMPANY.UNITS.TECHTRAINX.DURATION_MONTHS} months. ${COMPANY.UNITS.TECHTRAINX.SEATS} seats. ${COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS}+ DSA problems. 2 projects. 2 certificates.`}
             align="center"
           />
         </div>
       </section>
 
-      {/* ── Snapshot Bar ── */}
-      <section className="py-10 bg-white border-y border-gray-100">
+      {/* ── PRICING CARDS ── */}
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {SNAPSHOT.map((item, i) => (
-              <ScrollReveal key={item.label} variant="fadeIn" delay={i * 0.1}>
-                <div className="text-center">
-                  <span className="text-2xl block mb-2">{item.icon}</span>
-                  <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">{item.label}</p>
-                  <p className="text-sm font-medium text-gray-900">{item.value}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Offline */}
+            <ScrollReveal variant="slideUp" delay={0}>
+              <Card padding="lg" className="h-full flex flex-col border-t-4 border-t-techtrainx-500">
+                <Badge color="techtrainx" className="mb-3 self-start">🏫 OFFLINE</Badge>
+                <CardTitle>Offline Classroom Program</CardTitle>
+                <p className="text-xs text-gray-500 mb-4">{COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.MODE}</p>
+                <div className="my-4">
+                  <span className="text-4xl font-heading font-bold text-techtrainx-600">
+                    {COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.FULL_COURSE}
+                  </span>
+                  <span className="text-sm text-gray-500 ml-2">full course</span>
                 </div>
-              </ScrollReveal>
-            ))}
+                <p className="text-sm text-gray-600 mb-1">
+                  or <strong>{COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.MONTHLY}</strong>/month
+                </p>
+                <p className="text-xs text-green-600 font-medium mb-4">
+                  Save {COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.SAVINGS} with full course
+                </p>
+                <ul className="space-y-2 mb-6 flex-1 text-sm text-gray-600">
+                  <li className="flex gap-2">✅ Daily 2-hour offline classes</li>
+                  <li className="flex gap-2">✅ Face-to-face mentorship</li>
+                  <li className="flex gap-2">✅ Small batch of {COMPANY.UNITS.TECHTRAINX.SEATS} students</li>
+                  <li className="flex gap-2">✅ All 6 modules + 2 projects</li>
+                  <li className="flex gap-2">✅ 2 certificates</li>
+                </ul>
+                <Button to={ROUTES.CONTACT} variant="techtrainx" fullWidth>
+                  Register Offline — {COMPANY.UNITS.TECHTRAINX.PRICING.OFFLINE.FULL_COURSE}
+                </Button>
+              </Card>
+            </ScrollReveal>
+
+            {/* Online */}
+            <ScrollReveal variant="slideUp" delay={0.1}>
+              <Card padding="lg" className="h-full flex flex-col border-t-4 border-t-techtrainx-400">
+                <Badge color="techtrainx" className="mb-3 self-start">🌐 ONLINE</Badge>
+                <CardTitle>Online Live Program</CardTitle>
+                <p className="text-xs text-gray-500 mb-4">{COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.MODE}</p>
+                <div className="my-4">
+                  <span className="text-4xl font-heading font-bold text-techtrainx-600">
+                    {COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.FULL_COURSE}
+                  </span>
+                  <span className="text-sm text-gray-500 ml-2">full course</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-1">
+                  or <strong>{COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.MONTHLY}</strong>/month
+                </p>
+                <p className="text-xs text-green-600 font-medium mb-4">
+                  Save {COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.SAVINGS} with full course
+                </p>
+                <ul className="space-y-2 mb-6 flex-1 text-sm text-gray-600">
+                  <li className="flex gap-2">✅ Daily 2-hour live online classes</li>
+                  <li className="flex gap-2">✅ Same curriculum as offline</li>
+                  <li className="flex gap-2">✅ Study from anywhere in India</li>
+                  <li className="flex gap-2">✅ All 6 modules + 2 projects</li>
+                  <li className="flex gap-2">✅ Same 2 certificates</li>
+                </ul>
+                <Button to={ROUTES.CONTACT} variant="techtrainx" fullWidth>
+                  Register Online — {COMPANY.UNITS.TECHTRAINX.PRICING.ONLINE.FULL_COURSE}
+                </Button>
+              </Card>
+            </ScrollReveal>
+
+            {/* DSA Bootcamp */}
+            <ScrollReveal variant="slideUp" delay={0.2}>
+              <Card padding="lg" className="h-full flex flex-col border-t-4 border-t-techtrainx-500 ring-2 ring-techtrainx-200">
+                <Badge color="techtrainx" className="mb-3 self-start">⚡ DSA BOOTCAMP</Badge>
+                <CardTitle>45-Day DSA Bootcamp</CardTitle>
+                <p className="text-xs text-gray-500 mb-4">{COMPANY.UNITS.TECHTRAINX.PRICING.DSA_BOOTCAMP.MODE}</p>
+                <div className="my-4">
+                  <span className="text-4xl font-heading font-bold text-techtrainx-600">
+                    {COMPANY.UNITS.TECHTRAINX.PRICING.DSA_BOOTCAMP.FULL_COURSE}
+                  </span>
+                  <span className="text-sm text-gray-500 ml-2">total</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">One-time payment — no monthly fees</p>
+                <ul className="space-y-2 mb-6 flex-1 text-sm text-gray-600">
+                  <li className="flex gap-2">✅ {COMPANY.UNITS.TECHTRAINX.DSA_PROBLEMS}+ DSA problems</li>
+                  <li className="flex gap-2">✅ Java & C++ language tracks</li>
+                  <li className="flex gap-2">✅ 3 mock interviews</li>
+                  <li className="flex gap-2">✅ 1 DSA Completion Certificate</li>
+                  <li className="flex gap-2">✅ {COMPANY.UNITS.TECHTRAINX.DEMO_DAYS}-day free demo</li>
+                </ul>
+                <Button to={ROUTES.CONTACT} variant="techtrainx" fullWidth>
+                  Register DSA Bootcamp — {COMPANY.UNITS.TECHTRAINX.PRICING.DSA_BOOTCAMP.FULL_COURSE}
+                </Button>
+              </Card>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ── 12-Week Roadmap ── */}
-      <section className="section-padding bg-white">
+      {/* ── ROADMAP ── */}
+      <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
-          <SectionHeading
-            title="12-Week Learning Roadmap"
-            description="Every week is structured. Every topic is planned. No filler content."
-            align="center"
-          />
+          <SectionHeading title="Learning Roadmap" description="Structured week-by-week. No filler content." align="center" />
           <div className="space-y-4">
             {ROADMAP.map((item, index) => (
-              <ScrollReveal key={item.week} variant="slideUp" delay={index * 0.05}>
-                <Card
-                  padding="lg"
-                  className={`flex flex-col sm:flex-row sm:items-center gap-4 ${
-                    item.highlight ? 'border-techtrainx-500 bg-techtrainx-50 ring-1 ring-techtrainx-200' : ''
-                  }`}
-                >
-                  <div className="flex items-center gap-3 shrink-0">
-                    <Badge color={item.highlight ? 'techtrainx' : 'gray'} className="text-center min-w-[80px]">
-                      {item.label}
-                    </Badge>
-                    {item.highlight && (
-                      <span className="text-techtrainx-600 text-xs font-bold animate-pulse">FREE</span>
-                    )}
+              <ScrollReveal key={item.week} variant="slideUp" delay={index * 0.1}>
+                <Card padding="lg" className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <Badge color="techtrainx" className="text-center min-w-[100px]">{item.week}</Badge>
+                  <div>
+                    <p className="font-semibold text-gray-900">{item.title}</p>
+                    <p className="text-sm text-gray-600">{item.topics}</p>
                   </div>
-                  <p className="text-gray-700 text-sm sm:text-base">{item.topics}</p>
                 </Card>
               </ScrollReveal>
             ))}
@@ -109,35 +179,49 @@ const Bootcamp = () => {
         </div>
       </section>
 
-      {/* ── Features Grid ── */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <SectionHeading
-            title="What's Included"
-            description="Everything you need — nothing you don't."
-            align="center"
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {FEATURES.map((feature, index) => (
-              <ScrollReveal key={feature.title} variant="fadeIn" delay={index * 0.1}>
-                <Card hover padding="lg" className="text-center h-full border-t-4 border-t-techtrainx-500">
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription>{feature.description}</CardDescription>
-                </Card>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ Accordion ── */}
+      {/* ── CERTIFICATES ── */}
       <section className="section-padding bg-white">
+        <div className="container-custom max-w-4xl">
+          <SectionHeading title="Your 2 Certificates" description="Real credentials that add weight to your resume." align="center" />
+          <div className="space-y-6">
+            {COMPANY.UNITS.TECHTRAINX.CERTIFICATES.map((cert, index) => (
+              <ScrollReveal key={cert.name} variant="slideUp" delay={index * 0.15}>
+                <Card padding="lg" className="border-l-4 border-l-techtrainx-500">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 bg-techtrainx-100 rounded-xl flex items-center justify-center shrink-0">
+                      <span className="text-2xl">{index === 0 ? '📜' : '🏆'}</span>
+                    </div>
+                    <div>
+                      <Badge color="techtrainx" className="mb-2">{cert.issued}</Badge>
+                      <CardTitle>{cert.name}</CardTitle>
+                      <CardDescription>{cert.description}</CardDescription>
+                      {cert.tracks && (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {cert.tracks.map((track) => (
+                            <Badge key={track} color="gray">{track}</Badge>
+                          ))}
+                        </div>
+                      )}
+                      {cert.skills && (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {cert.skills.map((skill) => (
+                            <Badge key={skill} color="gray">{skill}</Badge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="section-padding bg-gray-50">
         <div className="container-custom max-w-3xl">
-          <SectionHeading
-            title="Frequently Asked Questions"
-            description="Real questions from students who joined before you."
-            align="center"
-          />
+          <SectionHeading title="Frequently Asked Questions" align="center" />
           <div className="space-y-3">
             {FAQS.map((faq, index) => (
               <FAQItem key={index} question={faq.q} answer={faq.a} />
@@ -146,19 +230,32 @@ const Bootcamp = () => {
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
+      {/* ── CTA ── */}
       <section className="py-20 bg-techtrainx-900">
         <div className="container-custom text-center max-w-2xl">
           <ScrollReveal variant="slideUp">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              {COMPANY.UNITS.TECHTRAINX.SEATS} seats. One free week to decide.
+              Ready to Get Hired?
             </h2>
-            <p className="text-techtrainx-200 text-lg mb-8 leading-relaxed">
-              The next batch starts soon. Seats fill in days — not weeks.
+            <p className="text-techtrainx-200 text-lg mb-4">
+              {COMPANY.UNITS.TECHTRAINX.SEATS} seats per batch. {COMPANY.UNITS.TECHTRAINX.DEMO_DAYS} days free demo. 
+              No payment until you experience the training.
             </p>
-            <Button to={ROUTES.CONTACT} variant="techtrainx" size="lg">
-              Register for Free Demo
-            </Button>
+            <p className="text-techtrainx-300 text-2xl font-bold mb-8">
+              📞 {COMPANY.UNITS.TECHTRAINX.PHONE}
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button to={ROUTES.CONTACT} variant="techtrainx" size="lg">
+                Call / WhatsApp to Register
+              </Button>
+              <Button
+                href={`tel:${COMPANY.UNITS.TECHTRAINX.PHONE.replace(/\s/g, '')}`}
+                size="lg"
+                className="border-2 border-white text-white hover:bg-white hover:text-techtrainx-900"
+              >
+                📞 Call Now
+              </Button>
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -166,10 +263,9 @@ const Bootcamp = () => {
   );
 };
 
-/* ─── FAQ Accordion Item (internal component) ─── */
+/* ─── FAQ Accordion ─── */
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="border border-gray-200 rounded-xl overflow-hidden">
       <button
@@ -178,18 +274,11 @@ const FAQItem = ({ question, answer }) => {
         aria-expanded={isOpen}
       >
         <span className="font-medium text-gray-900 pr-4">{question}</span>
-        <svg
-          className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-      >
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
         <p className="px-6 pb-4 text-gray-600 leading-relaxed">{answer}</p>
       </div>
     </div>

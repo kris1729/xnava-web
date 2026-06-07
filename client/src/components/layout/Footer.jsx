@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants/routes';
 import { COMPANY } from '@/constants/company';
-import { Logo } from '@/components/ui/Logo';
 import { NewsletterForm } from '@/components/forms/NewsletterForm';
 
 const QUICK_LINKS = [
@@ -49,9 +48,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* ── Brand ── */}
           <div className="lg:col-span-1">
-            <div className="mb-4">
-              <Logo variant="white" size="md" linkTo={ROUTES.HOME} />
-            </div>
+            <Link to={ROUTES.HOME} className="inline-block mb-4 group">
+              <span className="text-3xl font-heading font-extrabold text-white tracking-tight">
+                Xnava
+                <span className="text-xnava-400 group-hover:text-xnava-300 transition-colors">.</span>
+              </span>
+            </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">{COMPANY.TAGLINE}</p>
             <p className="text-sm text-gray-500 mb-4">{COMPANY.ADDRESS.FULL}</p>
             <div className="flex items-center gap-3">
@@ -122,8 +124,8 @@ export const Footer = () => {
             <a href={`mailto:${COMPANY.EMAIL.INFO}`} className="hover:text-white transition-colors">
               {COMPANY.EMAIL.INFO}
             </a>
-            <a href={`tel:${COMPANY.PHONE.PRIMARY}`} className="hover:text-white transition-colors">
-              {COMPANY.PHONE.PRIMARY}
+            <a href={`tel:${COMPANY.UNITS.TECHTRAINX.PHONE.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+              {COMPANY.UNITS.TECHTRAINX.PHONE}
             </a>
           </div>
         </div>

@@ -7,8 +7,8 @@ export const COMPANY = {
     INFO: 'info@xnava.in',
   },
   PHONE: {
-    PRIMARY: '+91-XXXXXXXXXX',
-    SECONDARY: '+91-XXXXXXXXXX',
+    PRIMARY: '+91 85450 92070',
+    SECONDARY: '+91 85450 92070',
   },
   ADDRESS: {
     STREET: 'Near Amity University',
@@ -30,44 +30,209 @@ export const COMPANY = {
       TAGLINE: 'Degrees get you shortlisted. Skills get you hired.',
       ROUTE: '/techtrainx',
       DESCRIPTION:
-        '3-month offline placement bootcamp for B.Tech, M.Tech, BCA, MCA, and Diploma CS students. Capped at 30 seats.',
+        '3-month offline & online placement bootcamp for B.Tech, M.Tech, BCA, MCA, and Diploma CS students. Capped at 30 seats. 7-day free demo. Mentors from TCS, Infosys, Google, Deloitte & Zeta.',
       SEATS: 30,
       DURATION_MONTHS: 3,
-      DEMO_WEEK: '1-week free demo week',
+      DEMO_DAYS: 7,
+      DEMO_WEEK: '7-day free demo classes',
+      PHONE: '+91 85450 92070',
       CURRICULUM: [
-        'DSA — 400+ handpicked problems',
-        'Core Computer Science fundamentals',
-        'Full Stack Development project',
-        'AI/ML live project',
+        'DSA — 400+ handpicked problems in Java & C++',
+        'SQL & Databases — queries, joins, normalization',
+        'OOPS — Object-Oriented Programming concepts',
+        'OS — Operating Systems fundamentals',
+        'CN — Computer Networks & protocols',
+        'Git & GitHub — version control & collaboration',
       ],
-      MENTORS: 'Industry mentors from MNC backgrounds',
+      MODULES_COUNT: 6,
+      DSA_PROBLEMS: 400,
+      PROJECTS_COUNT: 2,
+      CERTIFICATES_COUNT: 2,
+      MENTORS:
+        'Industry mentors from MNC backgrounds — TCS, Infosys, Google, Deloitte & Zeta',
+      MENTORS_LIST: ['TCS', 'Infosys', 'Google', 'Deloitte', 'Zeta'],
+      PRICING: {
+        OFFLINE: {
+          MONTHLY: '₹4,500',
+          MONTHLY_VALUE: 4500,
+          FULL_COURSE: '₹12,000',
+          FULL_COURSE_VALUE: 12000,
+          SAVINGS: '₹1,500',
+          LABEL: 'Offline Program',
+          MODE: 'Classroom — Near Amity University, Lucknow',
+        },
+        ONLINE: {
+          MONTHLY: '₹2,500',
+          MONTHLY_VALUE: 2500,
+          FULL_COURSE: '₹6,500',
+          FULL_COURSE_VALUE: 6500,
+          SAVINGS: '₹1,000',
+          LABEL: 'Online Program',
+          MODE: 'Live Online — Study from anywhere in India',
+        },
+        DSA_BOOTCAMP: {
+          FULL_COURSE: '₹1,500',
+          FULL_COURSE_VALUE: 1500,
+          DURATION_DAYS: 45,
+          LABEL: '45-Day DSA Bootcamp',
+          MODE: 'Online Intensive',
+          TAGLINE: 'The fastest way to crack coding rounds',
+        },
+      },
+      CERTIFICATES: [
+        {
+          name: 'Internship Experience Certificate',
+          issued: 'Day 45 — Mid Program',
+          description:
+            'Awarded after your first major project. Certifies real internship-level project work with industry exposure.',
+          tracks: ['Full Stack Development', 'AI / ML Track'],
+        },
+        {
+          name: 'Full Program Completion Certificate',
+          issued: 'End of Program — 3+ Months',
+          description:
+            'Awarded on completing the full bootcamp. Lists every module, skill, and project individually.',
+          skills: ['DSA & Algorithms', 'SQL & Databases', 'Full Stack Dev', 'AI / ML Project', 'OS & Networks', 'Git & GitHub'],
+        },
+      ],
+      DAILY_BENEFITS: [
+        {
+          title: '2 Hours of Daily Live Classes',
+          description: 'Every day, 2 focused hours of hands-on training — live classroom, real interaction, no distractions.',
+          icon: '🕑',
+        },
+        {
+          title: 'Doubt Sessions with MNC Engineers',
+          description: 'Exclusive doubt-clearing sessions directly with engineers from TCS, Infosys, Google, Deloitte & Zeta.',
+          icon: '💬',
+        },
+        {
+          title: 'E-Notes — Digital Study Material',
+          description: 'Complete digital notes for every module — structured, clean, and ready to revise before interviews.',
+          icon: '📖',
+        },
+        {
+          title: 'E-PDF: Q&A Short Copy',
+          description: 'Curated PDF of the most-asked interview questions with short, precise model answers.',
+          icon: '📋',
+        },
+        {
+          title: 'Small Batch · Personal Attention',
+          description: 'Only 30 seats per batch ensures every student gets direct mentor attention and personalised feedback.',
+          icon: '🎓',
+        },
+      ],
+      INCLUSIONS: [
+        { title: 'Complete Curriculum', description: 'All 6 modules — DSA, SQL, OOPS, OS, CN, Git. Interview-mapped.' },
+        { title: '2 Deployed Projects', description: 'Full Stack + AI/ML. Live on internet. On GitHub. Show in interviews.' },
+        { title: 'Mock Interviews', description: 'Technical + HR mock sessions with detailed mentor feedback.' },
+        { title: 'Resume Building', description: 'Mentor-reviewed, ATS-optimised resume with real projects.' },
+        { title: 'Communication Training', description: 'Spoken English, HR prep, confidence coaching included.' },
+        { title: 'MNC Mentorship', description: 'Weekly guidance from TCS, Infosys, Google, Deloitte professionals.' },
+      ],
     },
-    CHETNA: {
+        CHETNA: {
       NAME: 'Chetna Academy',
-      TAGLINE: 'Excellence in School Education',
+      FULL_NAME: 'Chetna Academy – STEM & Foundation Institute',
+      TAGLINE: 'Concept Clear, Future Secure',
+      TAGLINE_HINDI: 'जहाँ बेस मजबूत, वहाँ सफलता पक्की',
       ROUTE: '/chetna',
       DESCRIPTION:
-        'Educational institute for Classes 5 to 12 — board exam preparation, JEE, and NEET coaching with high-quality printed and digital study materials.',
+        'A fast-growing coaching institute near Amity University, Lucknow — building strong academic foundations and preparing students for JEE, NEET, NDA, and board exams.',
       CLASSES: 'Class 5 to 12',
-      OFFERINGS: ['Board Exam Preparation', 'JEE Coaching', 'NEET Coaching'],
+      PHONE: '+91 89606 28583',
+      EMAIL: 'chetna@xnava.in',
+      LOCATION: 'Near Amity University, Lucknow',
+      LOCATION_DESCRIPTION: 'Prime location near Amity University — highly accessible for students in Gomti Nagar Extension and nearby areas. Safe, student-friendly educational environment.',
+      WORKING_HOURS: {
+        WEEKDAYS: 'Monday – Saturday: 7:00 AM – 8:00 PM',
+        SUNDAY: 'Sunday: Closed',
+      },
+      ADMISSION: 'Admissions Open 2026–27 — Limited Seats, Small Batch Size',
+      BOARDS: ['CBSE', 'ICSE', 'UP Board'],
+      OFFERINGS: ['Board Exam Preparation', 'JEE Coaching', 'NEET Coaching', 'NDA Coaching'],
       MATERIALS: ['Printed Study Materials', 'Digital Study Materials'],
+      TEACHING_METHOD: {
+        TITLE: 'Demonstrative & Visual Learning',
+        DESCRIPTION:
+          'Concepts are explained visually and practically — making learning easier and more effective. Smart classroom experience with regular doubt-solving sessions, weekly & monthly tests, and individual performance tracking.',
+        FEATURES: [
+          'Concept clarity focused teaching',
+          'Smart classroom experience',
+          'Regular doubt-solving sessions',
+          'Weekly + monthly test system',
+          'Performance tracking for each student',
+        ],
+      },
+      DIGITAL_LEARNING: {
+        TITLE: 'Chetna Academy Learning App',
+        DESCRIPTION:
+          'Students get access to the Chetna Academy Learning App for complete academic support — live classes, recorded lectures, study material, online tests, and instant doubt solving.',
+        FEATURES: [
+          'Live interactive classes',
+          'Recorded lectures',
+          'Study material & notes',
+          'Online tests & performance tracking',
+          'Instant doubt solving system',
+        ],
+      },
+      INFRASTRUCTURE: [
+        'Smart classrooms',
+        'Limited batch size (high personal attention)',
+        'Peaceful study environment',
+        'Updated study materials',
+        'Hybrid (Online + Offline) learning',
+      ],
+      STUDENT_SUPPORT: [
+        'Personalized mentoring',
+        'Regular performance reports',
+        'Parent-teacher interaction',
+        'Career guidance sessions',
+        'Exam strategy planning',
+      ],
+      WHY_CHOOSE: [
+        {
+          title: 'Prime Location',
+          description: 'Located in the education hub near Amity University, Lucknow — accessible and inspiring.',
+          icon: '📍',
+        },
+        {
+          title: 'Demonstrative Teaching',
+          description: 'Visual and practical approach makes complex concepts easy to understand.',
+          icon: '🧠',
+        },
+        {
+          title: 'Foundation + Competitive',
+          description: 'Strong school foundation combined with JEE, NEET, NDA preparation under one roof.',
+          icon: '🎯',
+        },
+        {
+          title: 'Hybrid Support',
+          description: 'Offline classroom + online learning app — complete support, anywhere.',
+          icon: '📱',
+        },
+        {
+          title: 'Regular Testing',
+          description: 'Weekly tests, monthly assessments, and detailed performance analytics.',
+          icon: '📊',
+        },
+        {
+          title: 'Affordable Fees',
+          description: 'Quality education accessible to every student. Value-for-money programs.',
+          icon: '💰',
+        },
+      ],
+      SEO_KEYWORDS: [
+        'chetna academy lucknow',
+        'coaching near amity university lucknow',
+        'best coaching in gomti nagar extension',
+        'jee coaching lucknow',
+        'neet coaching lucknow',
+        'nda coaching lucknow',
+        'foundation classes lucknow',
+        'coaching for class 5 to 12 lucknow',
+        'stem institute lucknow',
+      ],
     },
   },
-  
-  ASSETS: {
-    LOGO: {
-      XNAVA_DARK: '/src/assets/logo/xnava-logo.svg',
-      XNAVA_WHITE: '/src/assets/logo/xnava-logo-white.svg',
-      XNAVA_ICON: '/src/assets/logo/xnava-icon.svg',
-      TECHTRAINX_DARK: '/src/assets/logo/techtrainx-logo.svg',
-      TECHTRAINX_WHITE: '/src/assets/logo/techtrainx-logo-white.svg',
-      CHETNA_DARK: '/src/assets/logo/chetna-logo.svg',
-      CHETNA_WHITE: '/src/assets/logo/chetna-logo-white.svg',
-    },
-    IMAGES: {
-      OG: '/og-image.webp',
-      PLACEHOLDER: '/src/assets/images/placeholder.webp',
-    },
-  },
-  
 };

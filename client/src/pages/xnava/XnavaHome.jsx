@@ -3,11 +3,8 @@ import { COMPANY } from '@/constants/company';
 import { META } from '@/constants/meta';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-} from '@/components/ui/Card';
+import { Logo } from '@/components/ui/Logo';
+import { Card, CardTitle, CardDescription } from '@/components/ui/Card';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -16,34 +13,50 @@ import { motion } from 'framer-motion';
 const STATS = [
   { value: 400, suffix: '+', label: 'DSA Problems' },
   { value: 30, suffix: '', label: 'Seats Per Batch' },
-  { value: 3, suffix: '', label: 'Months Duration' },
+  { value: 6, suffix: '+', label: 'Core Modules' },
   { value: 2, suffix: '', label: 'Education Units' },
+];
+
+const TRUST_BADGES = [
+  { label: 'Registered Partnership Firm', icon: '📋' },
+  { label: 'MSME Certified', icon: '🏛️' },
+  { label: 'GST Registered', icon: '✅' },
 ];
 
 const HERO_ANIMATION = {
   badge: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.1, duration: 0.5 } },
   heading: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.2, duration: 0.5 } },
   subtitle: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.3, duration: 0.5 } },
-  buttons: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.4, duration: 0.5 } },
+  buttons: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.5, duration: 0.5 } },
 };
 
 const XnavaHome = () => {
   return (
     <>
-      {/* ═══════════════════════════════════════
-          HERO — Dark, full-bleed, staggered entrance
-          ═══════════════════════════════════════ */}
+      {/* ═══════════ HERO ═══════════ */}
       <section className="min-h-[90vh] flex items-center bg-gradient-to-br from-xnava-950 via-xnava-900 to-xnava-800">
         <div className="container-custom py-20 lg:py-0">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Badge */}
+            {/* Trust Badges Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05, duration: 0.5 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
+            >
+              {TRUST_BADGES.map((badge) => (
+                <Badge key={badge.label} color="xnava" className="bg-white/10 text-xnava-100 border border-xnava-400/30 text-xs px-3 py-1">
+                  {badge.icon} {badge.label}
+                </Badge>
+              ))}
+            </motion.div>
+
             <motion.div {...HERO_ANIMATION.badge}>
               <Badge color="xnava" className="mb-6 text-sm px-4 py-1.5">
-                Lucknow&apos;s Technology Company
+                Lucknow&apos;s Technology & Education Company
               </Badge>
             </motion.div>
 
-            {/* Heading */}
             <motion.h1
               {...HERO_ANIMATION.heading}
               className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold text-white mb-6 text-balance leading-tight"
@@ -51,16 +64,23 @@ const XnavaHome = () => {
               Building India&apos;s Next Generation of Tech Talent
             </motion.h1>
 
-            {/* Subtitle */}
             <motion.p
               {...HERO_ANIMATION.subtitle}
-              className="text-lg sm:text-xl text-xnava-200 max-w-2xl mx-auto mb-10 leading-relaxed"
+              className="text-lg sm:text-xl text-xnava-200 max-w-2xl mx-auto mb-4 leading-relaxed"
             >
               Two focused units. One mission — producing graduates that companies
               actually want to hire.
             </motion.p>
 
-            {/* CTA Buttons */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="text-xnava-400 text-sm mb-10"
+            >
+              A Registered Partnership Firm • MSME Certified • Based in Lucknow, India
+            </motion.p>
+
             <motion.div
               {...HERO_ANIMATION.buttons}
               className="flex flex-wrap gap-4 justify-center"
@@ -77,43 +97,26 @@ const XnavaHome = () => {
               </Button>
             </motion.div>
 
-            {/* Scroll indicator */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.6 }}
               className="mt-16"
             >
-              <svg
-                className="w-6 h-6 text-xnava-400 mx-auto animate-bounce"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
+              <svg className="w-6 h-6 text-xnava-400 mx-auto animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          STATS BAR
-          ═══════════════════════════════════════ */}
+      {/* ═══════════ STATS BAR ═══════════ */}
       <section className="bg-white border-y border-gray-100 py-12">
         <div className="container-custom">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {STATS.map((stat, i) => (
-              <div
-                key={stat.label}
-                className="text-center lg:border-r border-gray-200 last:border-r-0"
-              >
+            {STATS.map((stat) => (
+              <div key={stat.label} className="text-center lg:border-r border-gray-200 last:border-r-0">
                 <AnimatedCounter
                   end={stat.value}
                   suffix={stat.suffix}
@@ -126,9 +129,7 @@ const XnavaHome = () => {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          TWO UNIT CARDS
-          ═══════════════════════════════════════ */}
+      {/* ═══════════ TWO UNIT CARDS ═══════════ */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <SectionHeading
@@ -138,7 +139,7 @@ const XnavaHome = () => {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* ── TechTrainx Card ── */}
+            {/* TechTrainx Card */}
             <ScrollReveal variant="slideLeft">
               <Card hover padding="lg" className="border-l-4 border-l-techtrainx-500 h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-3">
@@ -152,7 +153,7 @@ const XnavaHome = () => {
                 <CardTitle>{COMPANY.UNITS.TECHTRAINX.NAME}</CardTitle>
                 <CardDescription>{COMPANY.UNITS.TECHTRAINX.DESCRIPTION}</CardDescription>
                 <ul className="mt-4 space-y-2 flex-1">
-                  {COMPANY.UNITS.TECHTRAINX.CURRICULUM.map((item) => (
+                  {COMPANY.UNITS.TECHTRAINX.CURRICULUM.slice(0, 4).map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
                       <svg className="w-4 h-4 text-techtrainx-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -174,7 +175,7 @@ const XnavaHome = () => {
               </Card>
             </ScrollReveal>
 
-            {/* ── Chetna Card ── */}
+            {/* Chetna Card */}
             <ScrollReveal variant="slideRight">
               <Card hover padding="lg" className="border-l-4 border-l-chetna-500 h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-3">
@@ -201,6 +202,7 @@ const XnavaHome = () => {
                   <Badge color="gray">{COMPANY.UNITS.CHETNA.CLASSES}</Badge>
                   <Badge color="red">JEE</Badge>
                   <Badge color="red">NEET</Badge>
+                  <Badge color="red">NDA</Badge>
                 </div>
                 <Button to={ROUTES.CHETNA_HOME} variant="chetna" rightIcon={
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -213,18 +215,19 @@ const XnavaHome = () => {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          DARK CTA BAND
-          ═══════════════════════════════════════ */}
+      {/* ═══════════ DARK CTA ═══════════ */}
       <section className="py-20 bg-xnava-900">
         <div className="container-custom text-center max-w-3xl">
           <ScrollReveal variant="slideUp">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Ready to start your journey?
             </h2>
-            <p className="text-xnava-200 text-lg mb-8 leading-relaxed">
+            <p className="text-xnava-200 text-lg mb-4 leading-relaxed">
               Whether you&apos;re a student looking for placement prep or a parent
               searching for quality school education — we have a place for you.
+            </p>
+            <p className="text-xnava-400 text-sm mb-8">
+              📞 {COMPANY.UNITS.TECHTRAINX.PHONE} &nbsp;|&nbsp; 📧 {COMPANY.EMAIL.INFO}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button to={ROUTES.CONTACT} variant="primary" size="lg">
