@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+
+  --color-xnava-50: #eff6ff;
+  --color-xnava-100: #dbeafe;
+  --color-xnava-200: #bfdbfe;
+  --color-xnava-300: #93c5fd;
+  --color-xnava-400: #60a5fa;
+  --color-xnava-500: #3b82f6;
+  --color-xnava-600: #1d4ed8;
+  --color-xnava-700: #1e40af;
+  --color-xnava-800: #1e3a8a;
+  --color-xnava-900: #172554;
+  --color-xnava-950: #0f172a;
+
+  --color-techtrainx-50: #f0fdf4;
+  --color-techtrainx-100: #dcfce7;
+  --color-techtrainx-200: #bbf7d0;
+  --color-techtrainx-300: #86efac;
+  --color-techtrainx-400: #4ade80;
+  --color-techtrainx-500: #22c55e;
+  --color-techtrainx-600: #16a34a;
+  --color-techtrainx-700: #15803d;
+  --color-techtrainx-800: #166534;
+  --color-techtrainx-900: #14532d;
+
+  --color-chetna-50: #fef2f2;
+  --color-chetna-100: #fee2e2;
+  --color-chetna-200: #fecaca;
+  --color-chetna-300: #fca5a5;
+  --color-chetna-400: #f87171;
+  --color-chetna-500: #ef4444;
+  --color-chetna-600: #dc2626;
+  --color-chetna-700: #b91c1c;
+  --color-chetna-800: #991b1b;
+  --color-chetna-900: #7f1d1d;
+
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-slide-down: slideDown 0.3s ease-out;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-gray-900 font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background-color: var(--color-xnava-500);
+    color: white;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
