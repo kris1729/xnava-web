@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 
 /**
- * Wraps every page with a fade-in animation and ensures minimum height.
- * Pushes footer to the bottom on short pages.
+ * Wraps every page inside App.jsx <Routes>.
+ * Fade-in + 8px upward slide on mount.
+ * min-h-[60vh] ensures short pages still push footer down.
  */
 export const PageWrapper = ({ children }) => {
   return (

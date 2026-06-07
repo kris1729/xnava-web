@@ -53,4 +53,21 @@ export const COMPANY = {
       MATERIALS: ['Printed Study Materials', 'Digital Study Materials'],
     },
   },
+  
+  ASSETS: {
+    LOGO: {
+      XNAVA_DARK: '/src/assets/logo/xnava-logo.svg',
+      XNAVA_WHITE: '/src/assets/logo/xnava-logo-white.svg',
+      XNAVA_ICON: '/src/assets/logo/xnava-icon.svg',
+      TECHTRAINX_DARK: '/src/assets/logo/techtrainx-logo.svg',
+      TECHTRAINX_WHITE: '/src/assets/logo/techtrainx-logo-white.svg',
+      CHETNA_DARK: '/src/assets/logo/chetna-logo.svg',
+      CHETNA_WHITE: '/src/assets/logo/chetna-logo-white.svg',
+    },
+    IMAGES: {
+      OG: '/og-image.webp',
+      PLACEHOLDER: '/src/assets/images/placeholder.webp',
+    },
+  },
+  
 };

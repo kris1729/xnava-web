@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   Design Tokens
+   Every color, font, and animation used across
+   the site is declared here as a CSS variable
+   via @theme. Components reference these tokens
+   with Tailwind utility classes like bg-xnava-600.
+   ───────────────────────────────────────────── */
 @theme {
+  /* Font families */
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-heading: 'Poppins', system-ui, sans-serif;
 
+  /* Xnava brand palette — blue */
   --color-xnava-50: #eff6ff;
   --color-xnava-100: #dbeafe;
   --color-xnava-200: #bfdbfe;
@@ -16,6 +25,7 @@
   --color-xnava-900: #172554;
   --color-xnava-950: #0f172a;
 
+  /* TechTrainx Labs palette — green */
   --color-techtrainx-50: #f0fdf4;
   --color-techtrainx-100: #dcfce7;
   --color-techtrainx-200: #bbf7d0;
@@ -27,6 +37,7 @@
   --color-techtrainx-800: #166534;
   --color-techtrainx-900: #14532d;
 
+  /* Chetna Academy palette — red */
   --color-chetna-50: #fef2f2;
   --color-chetna-100: #fee2e2;
   --color-chetna-200: #fecaca;
@@ -38,6 +49,7 @@
   --color-chetna-800: #991b1b;
   --color-chetna-900: #7f1d1d;
 
+  /* Keyframe-driven animations */
   --animate-fade-in: fadeIn 0.5s ease-out;
   --animate-slide-up: slideUp 0.5s ease-out;
   --animate-slide-down: slideDown 0.3s ease-out;
@@ -46,16 +58,22 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+
   @keyframes slideUp {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+
   @keyframes slideDown {
     0% { opacity: 0; transform: translateY(-10px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 }
 
+/* ─────────────────────────────────────────────
+   Base Styles
+   Applied globally to every page.
+   ───────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -77,6 +95,10 @@
   }
 }
 
+/* ─────────────────────────────────────────────
+   Reusable Component Classes
+   Shared layout patterns used across pages.
+   ───────────────────────────────────────────── */
 @layer components {
   .container-custom {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -87,6 +109,10 @@
   }
 }
 
+/* ─────────────────────────────────────────────
+   Custom Utilities
+   One-off helpers not covered by Tailwind defaults.
+   ───────────────────────────────────────────── */
 @utility text-balance {
   text-wrap: balance;
 }
