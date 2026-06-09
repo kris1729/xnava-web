@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ROUTES } from '@/constants/routes';
 import { Button } from '@/components/ui/Button';
+import { Logo } from '@/components/ui/Logo';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { cn } from '@/utils/cn';
 
@@ -14,24 +15,9 @@ const NAV_LINKS = [
   { label: 'Contact', to: ROUTES.CONTACT },
 ];
 
-const ACTIVE_LINK_CLASSES =
-  'text-xnava-600 relative after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-xnava-500 after:rounded-full';
-
-const DESKTOP_LINK_CLASSES = ({ isActive }) =>
-  cn(
-    'text-sm font-medium transition-colors duration-200 py-1',
-    isActive ? ACTIVE_LINK_CLASSES : 'text-gray-600 hover:text-xnava-600',
-  );
-
-const MOBILE_LINK_CLASSES = ({ isActive }) =>
-  cn(
-    'block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200',
-    isActive ? 'bg-xnava-50 text-xnava-600' : 'text-gray-700 hover:bg-gray-50',
-  );
-
-const MOBILE_MENU_VARIANTS = {
+const MOBILE_MENU = {
   initial: { opacity: 0, height: 0 },
-  animate: { opacity: 1, height: 'auto', transition: { duration: 0.25, ease: 'easeOut' } },
+  animate: { opacity: 1, height: 'auto', transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] } },
   exit: { opacity: 0, height: 0, transition: { duration: 0.2, ease: 'easeIn' } },
 };
 
@@ -49,52 +35,50 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-shadow duration-300',
-        isScrolled && 'shadow-sm',
+        'sticky top-0 z-50 transition-all duration-300',
+        isScrolled
+          ? 'bg-gray-950/90 backdrop-blur-xl border-b border-gray-800/50 shadow-lg shadow-black/10'
+          : 'bg-transparent',
       )}
     >
       <nav className="container-custom flex items-center justify-between h-16 lg:h-20">
-        {/* ── Logo ── */}
-        <Link
-          to={ROUTES.HOME}
-          className="flex items-center shrink-0 group"
-          aria-label="Xnava Enterprises Home"
-        >
-          <span className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-900 tracking-tight">
-            Xnava
-            <span className="text-xnava-500 group-hover:text-xnava-600 transition-colors">.</span>
-          </span>
-        </Link>
+        {/* Logo */}
+        <Logo variant="white" size="md" linkTo={ROUTES.HOME} />
 
-        {/* ── Desktop Links ── */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
-              className={DESKTOP_LINK_CLASSES}
               end={link.to === ROUTES.HOME}
+              className={({ isActive }) =>
+                cn(
+                  'px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200',
+                  isActive ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5',
+                )
+              }
             >
               {link.label}
             </NavLink>
           ))}
         </div>
 
-        {/* ── Desktop CTA ── */}
+        {/* Desktop CTA */}
         <div className="hidden lg:block">
           <Button to={ROUTES.CONTACT} variant="primary" size="sm">
             Get in Touch
           </Button>
         </div>
 
-        {/* ── Mobile Hamburger ── */}
+        {/* Mobile Hamburger */}
         <button
-          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          className="lg:hidden p-2 -mr-2 rounded-lg hover:bg-white/10 transition-colors"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
         >
-          <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -104,28 +88,33 @@ export const Navbar = () => {
         </button>
       </nav>
 
-      {/* ── Mobile Menu ── */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden border-t border-gray-100 bg-white overflow-hidden"
-            variants={MOBILE_MENU_VARIANTS}
+            className="lg:hidden bg-gray-950/95 backdrop-blur-xl border-t border-gray-800/50 overflow-hidden"
+            variants={MOBILE_MENU}
             initial="initial"
             animate="animate"
             exit="exit"
           >
-            <div className="container-custom py-4 space-y-1">
+            <div className="container-custom py-6 space-y-2">
               {NAV_LINKS.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className={MOBILE_LINK_CLASSES}
                   end={link.to === ROUTES.HOME}
+                  className={({ isActive }) =>
+                    cn(
+                      'block px-4 py-3 rounded-xl text-base font-medium transition-colors duration-200',
+                      isActive ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5',
+                    )
+                  }
                 >
                   {link.label}
                 </NavLink>
               ))}
-              <div className="pt-3">
+              <div className="pt-4">
                 <Button to={ROUTES.CONTACT} variant="primary" fullWidth>
                   Get in Touch
                 </Button>

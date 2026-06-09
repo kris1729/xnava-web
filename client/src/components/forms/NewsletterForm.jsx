@@ -15,14 +15,14 @@ export const NewsletterForm = () => {
 
   if (isSuccess) {
     return (
-      <div className="text-center py-4">
-        <p className="text-green-400 font-medium">Subscribed! Check your inbox.</p>
+      <div className="text-center py-3">
+        <p className="text-green-400 font-medium text-sm">Subscribed! Welcome aboard.</p>
         <button
           onClick={() => {
             reset();
             setEmail('');
           }}
-          className="text-sm text-gray-400 underline mt-2 hover:text-gray-300"
+          className="text-xs text-gray-500 underline mt-2 hover:text-gray-300 transition-colors"
         >
           Subscribe another email
         </button>
@@ -31,30 +31,27 @@ export const NewsletterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-      <label htmlFor="newsletter-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        type="email"
-        id="newsletter-email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        placeholder="your@email.com"
-        className="flex-1 rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-xnava-400 focus:ring-2 focus:ring-xnava-400 focus:outline-none transition-colors"
-      />
-      <Button type="submit" variant="primary" disabled={isLoading}>
-        {isLoading ? (
-          <div className="flex flex-col items-center gap-0.5">
-            <span>Subscribing...</span>
-            <span className="text-[10px] text-gray-400 font-normal">Waking server...</span>
-          </div>
-        ) : (
-          'Subscribe'
-        )}
-      </Button>
-      {error && <p className="text-red-400 text-sm mt-1">{error}</p>}
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="flex flex-col sm:flex-row gap-3">
+        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+        <input
+          type="email"
+          id="newsletter-email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder="your@email.com"
+          className="flex-1 rounded-xl border border-gray-700 bg-gray-800/50 px-4 py-3 text-white placeholder-gray-500 focus:border-xnava-500 focus:ring-2 focus:ring-xnava-500/20 focus:outline-none transition-all duration-200 text-sm"
+        />
+        <Button type="submit" variant="primary" size="sm" disabled={isLoading}>
+          {isLoading ? (
+            <span className="text-xs">Subscribing...</span>
+          ) : (
+            'Subscribe'
+          )}
+        </Button>
+      </div>
+      {error && <p className="text-red-400 text-xs">{error}</p>}
     </form>
   );
 };

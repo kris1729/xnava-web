@@ -1,18 +1,15 @@
 @import "tailwindcss";
 
-/* ─────────────────────────────────────────────
-   Design Tokens
-   Every color, font, and animation used across
-   the site is declared here as a CSS variable
-   via @theme. Components reference these tokens
-   with Tailwind utility classes like bg-xnava-600.
-   ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════════ */
 @theme {
-  /* Font families */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Poppins', system-ui, sans-serif;
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Xnava brand palette — blue */
+  /* ── Xnava Blue (Primary Brand) ── */
   --color-xnava-50: #eff6ff;
   --color-xnava-100: #dbeafe;
   --color-xnava-200: #bfdbfe;
@@ -22,10 +19,10 @@
   --color-xnava-600: #1d4ed8;
   --color-xnava-700: #1e40af;
   --color-xnava-800: #1e3a8a;
-  --color-xnava-900: #172554;
-  --color-xnava-950: #0f172a;
+  --color-xnava-900: #0f172a;
+  --color-xnava-950: #0a0f1e;
 
-  /* TechTrainx Labs palette — green */
+  /* ── TechTrainx Green (Growth, Placement) ── */
   --color-techtrainx-50: #f0fdf4;
   --color-techtrainx-100: #dcfce7;
   --color-techtrainx-200: #bbf7d0;
@@ -37,48 +34,63 @@
   --color-techtrainx-800: #166534;
   --color-techtrainx-900: #14532d;
 
-  /* Chetna Academy palette — red */
-  --color-chetna-50: #fef2f2;
-  --color-chetna-100: #fee2e2;
-  --color-chetna-200: #fecaca;
-  --color-chetna-300: #fca5a5;
-  --color-chetna-400: #f87171;
-  --color-chetna-500: #ef4444;
-  --color-chetna-600: #dc2626;
-  --color-chetna-700: #b91c1c;
-  --color-chetna-800: #991b1b;
-  --color-chetna-900: #7f1d1d;
+  /* ── Chetna Violet (Wisdom, Education) ── */
+  --color-chetna-50: #f5f3ff;
+  --color-chetna-100: #ede9fe;
+  --color-chetna-200: #ddd6fe;
+  --color-chetna-300: #c4b5fd;
+  --color-chetna-400: #a78bfa;
+  --color-chetna-500: #8b5cf6;
+  --color-chetna-600: #7c3aed;
+  --color-chetna-700: #6d28d9;
+  --color-chetna-800: #5b21b6;
+  --color-chetna-900: #2e1065;
 
-  /* Keyframe-driven animations */
-  --animate-fade-in: fadeIn 0.5s ease-out;
-  --animate-slide-up: slideUp 0.5s ease-out;
-  --animate-slide-down: slideDown 0.3s ease-out;
+  /* ── Shadows ── */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 20px 40px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 4px 14px rgba(29, 78, 216, 0.25);
+  --shadow-button-hover: 0 8px 24px rgba(29, 78, 216, 0.35);
+  --shadow-glow: 0 0 60px rgba(59, 130, 246, 0.15);
+
+  /* ── Animations ── */
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+  --animate-slide-down: slideDown 0.3s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 3s ease-in-out infinite;
 
   @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
-
-  @keyframes slideUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes slideDown {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
   }
 }
 
-/* ─────────────────────────────────────────────
-   Base Styles
-   Applied globally to every page.
-   ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════ */
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -86,33 +98,80 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    @apply font-heading tracking-tight;
   }
 
   ::selection {
-    background-color: var(--color-xnava-500);
-    color: white;
+    @apply bg-xnava-500/20 text-xnava-600;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-xnava-500 outline-offset-2;
   }
 }
 
-/* ─────────────────────────────────────────────
-   Reusable Component Classes
-   Shared layout patterns used across pages.
-   ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════
+   REUSABLE COMPONENT CLASSES
+   ═══════════════════════════════════════════════ */
 @layer components {
   .container-custom {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-16 sm:py-20;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-gradient-to-r from-xnava-400 to-xnava-200 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-techtrainx {
+    @apply bg-gradient-to-r from-techtrainx-400 to-techtrainx-300 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-chetna {
+    @apply bg-gradient-to-r from-chetna-400 to-chetna-300 bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism panel */
+  .glass {
+    @apply bg-gray-950/80 backdrop-blur-xl border border-gray-800/50;
+  }
+
+  /* Card base */
+  .card-dark {
+    @apply bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8
+           transition-all duration-300
+           hover:border-xnava-500/30 hover:shadow-xl hover:shadow-xnava-500/5
+           hover:-translate-y-1;
+  }
+
+  .card-light {
+    @apply bg-white border border-gray-200 rounded-2xl p-6 sm:p-8
+           transition-all duration-300
+           hover:border-xnava-500/30 hover:shadow-xl hover:shadow-xnava-500/5
+           hover:-translate-y-1;
   }
 }
 
-/* ─────────────────────────────────────────────
-   Custom Utilities
-   One-off helpers not covered by Tailwind defaults.
-   ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════
+   CUSTOM UTILITIES
+   ═══════════════════════════════════════════════ */
 @utility text-balance {
   text-wrap: balance;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

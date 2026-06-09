@@ -1,29 +1,36 @@
 import { cn } from '@/utils/cn';
 import { Badge } from '@/components/ui/Badge';
 
-/* ─────────────────────────────────────────────
+/* ──────────────────────────────────────────
    Card
-   ───────────────────────────────────────────── */
+   ────────────────────────────────────────── */
 
 const PADDING_MAP = {
   none: 'p-0',
-  sm: 'p-4',
-  md: 'p-6',
-  lg: 'p-8',
+  sm: 'p-4 sm:p-5',
+  md: 'p-6 sm:p-8',
+  lg: 'p-8 sm:p-10',
+};
+
+const VARIANT_MAP = {
+  dark: 'bg-gray-900 border border-gray-800 hover:border-xnava-500/30 hover:shadow-xl hover:shadow-xnava-500/5',
+  light: 'bg-white border border-gray-200 hover:border-xnava-500/30 hover:shadow-xl hover:shadow-xnava-500/5',
 };
 
 /**
- * Base card container.
+ * Card component.
  *
- * @param {boolean}  hover      — enables lift + border-color shift on hover
- * @param {'none'|'sm'|'md'|'lg'} padding — internal spacing preset
- * @param {string}   as         — semantic HTML tag ('article', 'li', 'section')
- * @param {string}   className  — additional Tailwind classes
+ * @param {boolean}  hover      — enables lift + glow on hover
+ * @param {'none'|'sm'|'md'|'lg'} padding
+ * @param {'dark'|'light'}      variant
+ * @param {string}   as         — semantic HTML tag (div, article, li, section)
+ * @param {string}   className
  */
 export const Card = ({
   children,
   hover = false,
   padding = 'md',
+  variant = 'dark',
   as: Tag = 'div',
   className,
   ...props
@@ -31,9 +38,9 @@ export const Card = ({
   return (
     <Tag
       className={cn(
-        'relative rounded-xl border border-gray-200 bg-white shadow-sm',
-        hover &&
-          'transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-xnava-200',
+        'rounded-2xl transition-all duration-300',
+        VARIANT_MAP[variant],
+        hover && 'hover:-translate-y-1',
         PADDING_MAP[padding],
         className,
       )}
@@ -44,9 +51,9 @@ export const Card = ({
   );
 };
 
-/* ─────────────────────────────────────────────
+/* ──────────────────────────────────────────
    CardImage
-   ───────────────────────────────────────────── */
+   ────────────────────────────────────────── */
 
 const ASPECT_MAP = {
   video: 'aspect-video',
@@ -56,82 +63,56 @@ const ASPECT_MAP = {
 };
 
 /**
- * Card image with configurable aspect ratio.
+ * Full-width card image with configurable aspect ratio.
+ * Uses negative margins to sit flush with card edges.
  *
- * Renders full-width at the top of a Card.
- * Negative margins pull it flush with Card borders.
- *
- * @param {string} src         — image URL
- * @param {string} alt         — accessibility text (required)
- * @param {'video'|'square'|'wide'|'portrait'} aspectRatio — image shape
- * @param {string} className   — additional Tailwind classes
+ * @param {string} src
+ * @param {string} alt
+ * @param {'video'|'square'|'wide'|'portrait'} aspectRatio
+ * @param {string} className
  */
-export const CardImage = ({
-  src,
-  alt,
-  aspectRatio = 'video',
-  className,
-}) => {
+export const CardImage = ({ src, alt, aspectRatio = 'video', className }) => {
   return (
-    <div
-      className={cn(
-        'overflow-hidden rounded-t-xl -mx-6 -mt-6 mb-4',
-        ASPECT_MAP[aspectRatio],
-        className,
-      )}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
+    <div className={cn('overflow-hidden rounded-t-2xl -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-6', ASPECT_MAP[aspectRatio], className)}>
+      <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
     </div>
   );
 };
 
-/* ─────────────────────────────────────────────
+/* ──────────────────────────────────────────
    CardBadge
-   ───────────────────────────────────────────── */
+   ────────────────────────────────────────── */
 
 /**
- * Absolutely-positioned badge in the top-right corner of a Card.
- * Card must have `relative` (it does by default).
+ * Absolutely-positioned badge in the top-right corner.
+ * Card must have relative positioning (it does by default via rounded-2xl).
  *
- * @param {string} children   — badge text
- * @param {string} color      — passed to <Badge> component
- * @param {string} className  — additional Tailwind classes
+ * @param {string} children
+ * @param {string} color    — passed to <Badge>
+ * @param {string} className
  */
 export const CardBadge = ({ children, color = 'xnava', className }) => {
   return (
     <div className="absolute top-4 right-4 z-10">
-      <Badge color={color} className={className}>
+      <Badge color={color} size="sm" className={className}>
         {children}
       </Badge>
     </div>
   );
 };
 
-/* ─────────────────────────────────────────────
+/* ──────────────────────────────────────────
    CardTitle
-   ───────────────────────────────────────────── */
+   ────────────────────────────────────────── */
 
 export const CardTitle = ({ children, className }) => {
-  return (
-    <h3 className={cn('text-xl font-semibold text-gray-900 mb-2', className)}>
-      {children}
-    </h3>
-  );
+  return <h3 className={cn('text-xl sm:text-2xl font-heading font-bold text-white mb-3', className)}>{children}</h3>;
 };
 
-/* ─────────────────────────────────────────────
+/* ──────────────────────────────────────────
    CardDescription
-   ───────────────────────────────────────────── */
+   ────────────────────────────────────────── */
 
 export const CardDescription = ({ children, className }) => {
-  return (
-    <p className={cn('text-gray-600 leading-relaxed', className)}>
-      {children}
-    </p>
-  );
+  return <p className={cn('text-gray-400 leading-relaxed', className)}>{children}</p>;
 };

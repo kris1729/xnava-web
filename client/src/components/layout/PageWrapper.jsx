@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion';
 
 /**
- * Wraps every page inside App.jsx <Routes>.
- * Fade-in + 8px upward slide on mount.
- * min-h-[60vh] ensures short pages still push footer down.
+ * Wraps all page content inside App.jsx <Routes>.
+ * Smooth fade-in + 12px upward motion on mount.
+ * min-h-screen ensures footer stays at bottom on short pages.
  */
 export const PageWrapper = ({ children }) => {
   return (
     <motion.main
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 8 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="min-h-[60vh]"
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="min-h-screen"
     >
       {children}
     </motion.main>

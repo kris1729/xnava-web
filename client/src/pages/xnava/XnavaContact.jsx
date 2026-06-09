@@ -1,11 +1,11 @@
 import { COMPANY } from '@/constants/company';
 import { META } from '@/constants/meta';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { Badge } from '@/components/ui/Badge';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { Badge } from '@/components/ui/Badge';
 
-const CONTACT_DETAILS = [
+const CONTACT_ITEMS = [
   {
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,96 +37,85 @@ const CONTACT_DETAILS = [
     value: COMPANY.ADDRESS.FULL,
     href: null,
   },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    label: 'Working Hours',
-    value: 'Monday – Saturday: 7:00 AM – 8:00 PM',
-    href: null,
-  },
-];
-
-const BUSINESS_CREDENTIALS = [
-  { label: 'Registered Partnership Firm', icon: '📋' },
-  { label: 'MSME / Udyam Certified', icon: '🏛️' },
-  { label: 'GST Registered', icon: '🧾' },
 ];
 
 const XnavaContact = () => {
   return (
-    <section className="section-padding">
-      <div className="container-custom">
-        <SectionHeading
-          badge="Contact"
-          title={META.CONTACT.TITLE}
-          description="Have a question about TechTrainx Labs, Chetna Academy, or Xnava Enterprises? We'd love to hear from you."
-          align="center"
-        />
+    <>
+      {/* Hero */}
+      <section className="relative min-h-[40vh] flex items-center bg-gradient-to-br from-xnava-950 via-gray-950 to-gray-950 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-xnava-600/8 rounded-full blur-3xl" />
+        </div>
+        <div className="container-custom relative z-10 py-20">
+          <SectionHeading
+            eyebrow="Contact"
+            eyebrowColor="xnava"
+            title={META.CONTACT.TITLE}
+            description="Have a question about TechTrainx Labs, Chetna Academy, or Xnava Enterprises? We'd love to hear from you."
+            align="center"
+          />
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
-          {/* ── Left Sidebar ── */}
-          <div className="lg:col-span-1">
-            <ScrollReveal variant="slideLeft">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">Reach Us At</h3>
-
-              <div className="space-y-5 mb-8">
-                {CONTACT_DETAILS.map((item) => (
-                  <div key={item.label} className="flex gap-4 items-start">
-                    <div className="w-10 h-10 bg-xnava-100 rounded-lg flex items-center justify-center text-xnava-600 shrink-0">
-                      {item.icon}
+      {/* Content */}
+      <section className="section-padding bg-gray-950">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-5xl mx-auto">
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <ScrollReveal variant="fadeInLeft">
+                <h3 className="text-xl font-heading font-bold text-white mb-8">Reach Us At</h3>
+                <div className="space-y-6 mb-10">
+                  {CONTACT_ITEMS.map((item) => (
+                    <div key={item.label} className="flex gap-4 items-start">
+                      <div className="w-10 h-10 bg-xnava-500/10 rounded-xl flex items-center justify-center text-xnava-400 shrink-0">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">{item.label}</p>
+                        {item.href ? (
+                          <a href={item.href} className="text-gray-200 font-medium hover:text-xnava-400 transition-colors break-all">
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-gray-200 font-medium text-sm leading-relaxed">{item.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">{item.label}</p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-gray-900 font-medium hover:text-xnava-600 transition-colors break-all"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-900 font-medium text-sm leading-relaxed">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Business Credentials */}
-              <div className="bg-xnava-50 rounded-xl p-4 border border-xnava-100 mb-6">
-                <h4 className="text-sm font-semibold text-xnava-900 mb-3">Business Credentials</h4>
-                <div className="flex flex-wrap gap-2">
-                  {BUSINESS_CREDENTIALS.map((cred) => (
-                    <Badge key={cred.label} color="xnava" className="text-xs">
-                      {cred.icon} {cred.label}
-                    </Badge>
                   ))}
                 </div>
-              </div>
 
-              {/* Response Time */}
-              <div className="bg-xnava-50 rounded-xl p-4 border border-xnava-100">
-                <p className="text-sm text-xnava-800">
-                  <span className="font-semibold">Response time:</span> We typically
-                  respond within 24 hours on working days.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
+                {/* Credentials */}
+                <div className="bg-gray-900 border border-gray-800 rounded-2xl p-5 mb-6">
+                  <h4 className="text-sm font-semibold text-white mb-3">Business Credentials</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge color="white" size="sm">📋 Partnership Firm</Badge>
+                    <Badge color="white" size="sm">🏛️ MSME Certified</Badge>
+                    <Badge color="white" size="sm">🧾 GST Registered</Badge>
+                  </div>
+                </div>
 
-          {/* ── Right Form ── */}
-          <div className="lg:col-span-2">
-            <ScrollReveal variant="slideRight">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">Send us a Message</h3>
-              <ContactForm />
-            </ScrollReveal>
+                {/* Response time */}
+                <div className="bg-xnava-500/5 border border-xnava-500/10 rounded-2xl p-5">
+                  <p className="text-sm text-gray-400">
+                    <span className="text-xnava-400 font-semibold">Response time:</span> We typically respond within 24 hours on working days.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Form */}
+            <div className="lg:col-span-2">
+              <ScrollReveal variant="fadeInRight">
+                <h3 className="text-xl font-heading font-bold text-white mb-8">Send us a Message</h3>
+                <ContactForm />
+              </ScrollReveal>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

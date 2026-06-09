@@ -1,23 +1,42 @@
 import { cn } from '@/utils/cn';
 
 const COLORS = {
-  blue: 'bg-blue-100 text-blue-800',
-  green: 'bg-green-100 text-green-800',
-  red: 'bg-red-100 text-red-800',
-  yellow: 'bg-yellow-100 text-yellow-800',
-  purple: 'bg-purple-100 text-purple-800',
-  gray: 'bg-gray-100 text-gray-800',
-  techtrainx: 'bg-techtrainx-100 text-techtrainx-800',
-  chetna: 'bg-chetna-100 text-chetna-800',
-  xnava: 'bg-xnava-100 text-xnava-800',
+  blue: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+  green: 'bg-green-500/10 text-green-400 border-green-500/20',
+  red: 'bg-red-500/10 text-red-400 border-red-500/20',
+  yellow: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+  purple: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  gray: 'bg-gray-500/10 text-gray-400 border-gray-500/20',
+  white: 'bg-white/10 text-white border-white/20',
+  xnava: 'bg-xnava-500/10 text-xnava-400 border-xnava-500/20',
+  techtrainx: 'bg-techtrainx-500/10 text-techtrainx-400 border-techtrainx-500/20',
+  chetna: 'bg-chetna-500/10 text-chetna-400 border-chetna-500/20',
+  success: 'bg-green-500/10 text-green-400 border-green-500/20',
 };
 
-export const Badge = ({ children, color = 'blue', className }) => {
+const SIZES = {
+  sm: 'px-2.5 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm',
+  lg: 'px-4 py-1.5 text-sm',
+};
+
+/**
+ * Premium pill badge.
+ *
+ * Usage:
+ *   <Badge color="xnava">Label</Badge>
+ *   <Badge color="techtrainx" size="lg">Placement Bootcamp</Badge>
+ *
+ * @param {'blue'|'green'|'red'|'yellow'|'purple'|'gray'|'white'|'xnava'|'techtrainx'|'chetna'|'success'} color
+ * @param {'sm'|'md'|'lg'} size
+ */
+export const Badge = ({ children, color = 'xnava', size = 'md', className }) => {
   return (
     <span
       className={cn(
-        'inline-block rounded-full px-3 py-1 text-xs font-semibold',
+        'inline-flex items-center gap-1.5 rounded-full border font-medium tracking-wide',
         COLORS[color],
+        SIZES[size],
         className,
       )}
     >
